@@ -1,10 +1,11 @@
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
+#include <limits>
 
 class TelepCalculator {
 public:
-    TelepCalculator(int penz, int oraber) :
+    explicit TelepCalculator(int penz, int oraber) :
         penz_{penz},
         oraber_{oraber}
     {}
@@ -59,7 +60,7 @@ int main() {
         } else {
             std::cout << "Kerlek pozitiv egesz szamot adj meg!\n";
             std::cin.clear();
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 
@@ -70,12 +71,16 @@ int main() {
         } else {
             std::cout << "Kerlek pozitiv egesz szamot adj meg!\n";
             std::cin.clear();
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 
     TelepCalculator calculator(forint, oraber);
     calculator.printResult();
+
+    std::cout << "Nyomj egy gombot a kilepeshez...\n";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
 
     return 0;
 }
